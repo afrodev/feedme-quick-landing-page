@@ -1,3 +1,8 @@
+/**
+ * Ensure the dynamic export is properly formatted and placed at the very top of the file
+ */
+export const dynamic = 'force-dynamic';
+
 import { NextResponse } from 'next/server';
 
 const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
@@ -8,9 +13,9 @@ if (!GOOGLE_SCRIPT_URL) {
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const { email: Email } = await req.json();
 
-    if (!email) {
+    if (!Email) {
       return NextResponse.json(
         { error: 'Email is required' },
         { status: 400 }
@@ -19,15 +24,17 @@ export async function POST(req: Request) {
 
     const timestamp = new Date().toISOString();
 
+    // Create form data instead of JSON
+    const formData = new URLSearchParams();
+    formData.append('Email', Email);
+    formData.append('Timestamp', timestamp);
+
     const response = await fetch(GOOGLE_SCRIPT_URL!, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({
-        email,
-        timestamp,
-      }),
+      body: formData.toString(),
     });
 
     if (!response.ok) {
