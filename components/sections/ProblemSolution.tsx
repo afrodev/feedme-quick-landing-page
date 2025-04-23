@@ -58,7 +58,7 @@ export const ProblemSolution = () => {
               <div className="text-sm text-[#bb5300]/70 mb-1">FeedMe foreslår:</div>
               <div className="text-[#bb5300] font-medium">Pasta med rester av kylling, brokkoli og fløtesaus</div>
             </div>
-            <div className="absolute -top-8 -left-8 bg-white p-4 rounded-xl shadow-xl w-48 transform -rotate-3 hover:rotate-0 transition-all">
+            <div className="absolute -top-8 -left-4 bg-white p-4 rounded-xl shadow-2xl w-48 transform -rotate-3 hover:rotate-0 transition-all">
               <div className="text-sm text-[#bb5300]/70 mb-1">Ingredienser:</div>
               <div className="text-[#bb5300] font-medium">Kylling, brokkoli, fløte, pasta</div>
             </div>
